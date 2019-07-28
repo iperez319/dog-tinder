@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <link rel = "stylesheet" href = "/i/style.css">
+    </head>
+    <body>
+        <div id="topmenu">
+            <a href="/">Home</a>
+            {% if login_url %}
+            <a href  = "{{login_url}}">Log In</a>
+            {% else %}
+            <a href  = "{{logout_url}}">Log Out</a>
+            <a href = "/profile-edit">Edit My Profile</a>
+            <a href  = "/profile-view">View My Profile</a>
+            {% endif %}
+            <br>
+        </div>
+        <div id = "main">
+            {% if successmsg %}
+            <div id = "successmsg">{{successmsg|linebreaks}}</div>
+            {% endif %}
+            {% if errormsg %}
+            <div id = "errormsg">{{errormsg|linebreaks}}</div>
+            {% endif %}
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>

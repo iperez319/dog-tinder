@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+{% block content %}
+<div>
+    <h2>{{name}}</h2>
+    <h4>{{city}}, {{state}}</h4>
+    <br>
+    <h3>Dogs</h3>
+    {% if dogs %}
+        <div>
+        {% for dog in dogs %}
+        <div>
+            <div>
+            Name: {{dog.name}}<br>
+            Breed: {{dog.breed}}<br>
+            Gender: {{dog.gender}}<br>
+            </div>
+            <br>
+            <img src="/img?img_id={{dog.keyUrl}}"/>
+        </div>
+        {% endfor %}
+        </div>
+        <br><br>
+    {% else %}
+    There are no dogs
+    {% endif %}
+    <a href="/add-dog">Add a new dog</a>
+<div>
+{% endblock %}

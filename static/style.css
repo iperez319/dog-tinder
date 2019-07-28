@@ -1,0 +1,31 @@
+body {
+    font-family: Helvetica, Sans-serif;
+    font-size: 14px;
+}
+
+#main {
+    text-align: center;
+}
+
+a {
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+#topmenu {
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+#successmsg {
+    font-weight: bold;
+    color: green;
+}
+
+#errormsg {
+    font-weight: bold;
+    color: red;
+}

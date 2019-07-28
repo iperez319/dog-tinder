@@ -1,0 +1,62 @@
+{% extends "_base.html" %}
+{%block content %}
+<div>        
+    <form method="post" enctype="multipart/form-data">
+
+        <center>
+            <h1>Add Dog: Tell us more about your dog!</h1>
+
+            <br>
+            <h3> What is your dog's name?</h3>
+            <input type="text" name="name">
+            <h3>What is your dog's breed?</h3>
+            <input type="text" name="breed">
+
+
+            <h3>Is your dog female or male?</h3>
+            <input type="radio" value="female" name="gender"> Female<br>
+            <input type="radio" value="male" name="gender"> Male<br>
+
+            <h3>What is your dog's age?</h3>
+            <input type="radio" value="puppy" name="age">Puppy: Less than 2 years. <br>
+            <input type="radio" value="adolecsent" name="age"> Adolecsent: 2-3 years old.<br>
+            <input type="radio" value="adult" name="age"> Adult: 4-9 years old.<br>
+            <input type="radio" value="senior" name="age"> Senior: More than 9 years old. <br>
+
+
+            <h3>What is your dog's size?</h3>
+            <input type="radio" value="toy" name="size"> Toy: Up to 12 pounds. <br>
+            <input type="radio" value="small" name="size"> Small: 12-25 pounds.<br>
+            <input type="radio" value="Medium" name="size"> Medium: 25-50 pounds.<br>
+            <input type="radio" value="Large" name="size"> Large: 50-100 pounds. <br>
+            <input type="radio" value="extraLarge" name="size"> Extra Large: More than 100 pounds.<br>
+
+            <h3>Is your dog social or shy?</h3>
+            <input type="radio" value="social" name="social"> Social. Will initiate play.<br>
+            <input type="radio" value="shy" name="social"> Shy. Will wait until play is initiated.<br>
+
+
+            <h3>How active is your dog?</h3>
+            <input type="radio" value="notReallyActive" name="active"> Not really active. Would play for less than 15 minutes.<br>
+            <input type="radio" value="aLittleActive" name="active"> A little active. Would play for 15 minutes.<br>
+            <input type="radio" value="mediumActive" name="active"> Medium level of activeness. Would play for 15-30 minutes.<br>
+            <input type="radio" value="veryActive" name="active"> Very active, never gets bored. Could play for 30-60 minutes.<br>
+
+
+            <h3>Is your dog friendly?</h3>
+            <input type="radio" value="yesFriendly" name="friendly"> Yes. <br>
+            <input type="radio" value="noFriendly" name="friendly">No.<br>
+
+
+            <h3>Pick a profile picture for your dog!</h3>
+            <input type="file" name="profilePic"> <br>
+
+
+            <br>
+            <br>
+            <input type="submit" value="Submit">
+
+        </center>
+    </form>
+</div>
+{% endblock %}
