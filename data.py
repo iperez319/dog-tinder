@@ -32,7 +32,7 @@ def get_dog_by_id(ids):
     return None
 def get_local_dogs(email, city, state):
     results = []
-    p = UserProfile.query(ndb.AND(UserProfile.city == city, ndb.AND(UserProfile.state == state, UserProfile.email != email))).fetch()
+    p = UserProfile.query(UserProfile.city == city, UserProfile.state == state, UserProfile.email != email).fetch()
     for profile in p:
         for dog in profile.dogs:
             results.append(dog.get())

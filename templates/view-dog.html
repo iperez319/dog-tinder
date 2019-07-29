@@ -14,7 +14,14 @@
     </ul>
     <h2>Potential Matches</h2>
     {% for dog in matchedDogs %}
-        One dog
+    <div>
+        Name: {{dog.name}}<br>
+        Breed: {{dog.breed}}<br>
+        Gender: {{dog.gender}}<br>
+        Score: <h3>{{dog.score}}%</h3>
+    </div>
+    <img src="/img?img_id={{keyUrl}}"/>
+    </div>
     {% endfor %}
 
 </div>

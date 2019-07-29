@@ -103,7 +103,7 @@ class ProfileViewHandler(webapp2.RequestHandler):
                     print(currDog.keyUrl)
                     dogs.append(currDog)
                 values['dogs'] = dogs
-                data.populate_dogs()
+                #data.populate_dogs()
             render_template(self, 'profile-view.html', values)
 class AddDogHandler(webapp2.RequestHandler):
     def get(self):
@@ -153,7 +153,9 @@ class ViewDogHandler(webapp2.RequestHandler):
             scoredDogs = []
             for d in localDogs:
                 d.score = data.score_dog(dog ,d)
+                d.keyUrl = d.key.urlsafe()
                 scoredDogs.append(d)
+            scoredDogs.sort(key=lambda d: d.score, reverse=True)
             values["matchedDogs"] = scoredDogs
             render_template(self, 'view-dog.html', values)
 
