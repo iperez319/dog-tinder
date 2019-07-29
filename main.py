@@ -5,6 +5,7 @@ import webapp2
 from google.appengine.api import users
 from google.appengine.ext.webapp import template
 from google.appengine.ext import ndb
+from models import Dog
 
 def render_template(handler, file_name, template_values):
     path = os.path.join(os.path.dirname(__file__), 'templates/', file_name)
@@ -102,11 +103,7 @@ class ProfileViewHandler(webapp2.RequestHandler):
                     print(currDog.keyUrl)
                     dogs.append(currDog)
                 values['dogs'] = dogs
-            # Dog Matching Process Starts Here
-                localDogs = data.get_local_dogs(profile.city, profile.state)
-                print(localDogs)
-                # Insert Custom Scoring
-                # See list of compatible breeds
+                data.populate_dogs()
             render_template(self, 'profile-view.html', values)
 class AddDogHandler(webapp2.RequestHandler):
     def get(self):
@@ -139,6 +136,7 @@ class ViewDogHandler(webapp2.RequestHandler):
             self.redirect('/')
         else:
             values = get_template_parameters()
+            profile = data.get_user_profile(get_user_email())
             dog_key = ndb.Key(urlsafe=dog_id)
             dog = dog_key.get()
             values["name"] = dog.name
@@ -150,7 +148,16 @@ class ViewDogHandler(webapp2.RequestHandler):
             values["active"] = dog.activityLevel
             values["friendly"] = dog.friendlyLevel
             values["keyUrl"] = dog_id
+            localDogs = data.get_local_dogs(get_user_email(), profile.city, profile.state)
+            print(localDogs)
+            scoredDogs = []
+            for d in localDogs:
+                d.score = data.score_dog(dog ,d)
+                scoredDogs.append(d)
+            values["matchedDogs"] = scoredDogs
             render_template(self, 'view-dog.html', values)
+
+
 
 class Image(webapp2.RequestHandler):
     def get(self):
