@@ -104,7 +104,7 @@ class ProfileViewHandler(webapp2.RequestHandler):
                 values['dogs'] = dogs
             # Dog Matching Process Starts Here
                 localDogs = data.get_local_dogs(profile.city, profile.state)
-
+                print(localDogs)
                 # Insert Custom Scoring
                 # See list of compatible breeds
             render_template(self, 'profile-view.html', values)

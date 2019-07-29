@@ -1,5 +1,6 @@
 from models import UserProfile
 from models import Dog
+from google.appengine.ext import ndb
 
 def save_profile(email, name, city, state):
     p = get_user_profile(email)
@@ -30,7 +31,7 @@ def get_dog_by_id(ids):
     return None
 def get_local_dogs(city, state):
     results = []
-    p = UserProfile(ndb.AND(UserProfile.city == city, UserProfile.state == state))
+    p = UserProfile.query(ndb.AND(UserProfile.city == city, UserProfile.state == state)).fetch()
     for profile in p:
         for dog in profile.dogs:
             results.append(dog)
