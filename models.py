@@ -4,6 +4,7 @@ class Dog(ndb.Model):
     name = ndb.StringProperty()
     breed = ndb.StringProperty()
     gender = ndb.StringProperty()
+    age = ndb.StringProperty()
     size = ndb.StringProperty()
     socialLevel = ndb.StringProperty()
     activityLevel = ndb.StringProperty()

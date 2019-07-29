@@ -15,7 +15,9 @@
             Gender: {{dog.gender}}<br>
             </div>
             <br>
-            <img src="/img?img_id={{dog.keyUrl}}"/>
+            <a href  = "/view-dog/{{dog.keyUrl}}">
+            <img src="/img?img_id={{dog.keyUrl}}" href="/view-dog/{{dog.keyUrl}}"/>
+            </a>
         </div>
         {% endfor %}
         </div>

@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<div>
+    <h1>{{name}}</h1>
+    <h2>{{breed}}, {{gender}}</h2>
+    <img src="/img?img_id={{keyUrl}}"/>
+    <ul>
+        <li>Age: {{age}}</li>
+        <li>Size: {{size}}</li>
+        <li>Social: {{social}}</li>
+        <li>Active: {{active}}</li>
+        <li>Friendly: {{friendly}}</li>
+    </ul>
+    <h2>Potential Matches</h2>
+
+</div>
+
+{%endblock %}
+

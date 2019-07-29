@@ -128,6 +128,25 @@ class AddDogHandler(webapp2.RequestHandler):
             profilePic = self.request.get('profilePic')
         data.create_dog(get_user_email(), name, breed, gender, age, size, social, active, friendly, profilePic)
         self.redirect('/profile-view')
+class ViewDogHandler(webapp2.RequestHandler):
+    def get(self, dog_id):
+        if not get_user_email():
+            self.redirect('/')
+        else:
+            values = get_template_parameters()
+            dog_key = ndb.Key(urlsafe=dog_id)
+            dog = dog_key.get()
+            values["name"] = dog.name
+            values["breed"] = dog.breed
+            values["gender"] = dog.gender
+            values["age"] = dog.age
+            values["size"] = dog.size
+            values["social"] = dog.socialLevel
+            values["active"] = dog.activityLevel
+            values["friendly"] = dog.friendlyLevel
+            values["keyUrl"] = dog_id
+            render_template(self, 'view-dog.html', values)
+
 class Image(webapp2.RequestHandler):
     def get(self):
         dog_key = ndb.Key(urlsafe=self.request.get('img_id'))
@@ -143,7 +162,7 @@ app = webapp2.WSGIApplication([
     ('/profile-save', ProfileSaveHandler),
     ('/profile-edit', ProfileEditHandler),
     ('/add-dog', AddDogHandler),
-    ('/view-dog', ViewDogHandler),
+    ('/view-dog/(.*)', ViewDogHandler),
     ('/img', Image),
     ('.*', MainHandler)
     ])
