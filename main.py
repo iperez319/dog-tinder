@@ -103,7 +103,7 @@ class ProfileViewHandler(webapp2.RequestHandler):
                     dogs.append(currDog)
                 values['dogs'] = dogs
             # Dog Matching Process Starts Here
-                localDogs = data.get_local_dogs(get_user_email(), profile.city, profile.state)
+                localDogs = data.get_local_dogs(profile.city, profile.state)
 
                 # Insert Custom Scoring
                 # See list of compatible breeds
