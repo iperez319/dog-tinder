@@ -18,7 +18,7 @@ def get_user_profile(email):
     return None
 def create_dog(email, name, breed, gender, age, size, social, active, friendly, profilePic):
     p = get_user_profile(email)
-    newDog = Dog(name=name, breed=breed, age=age, gender=gender, socialLevel=social, activityLevel=active, friendlyLevel=friendly, size=size, ownerName=p.name, profilePic=profilePic)
+    newDog = Dog(name=name, breed=breed, age=age, gender=gender, socialLevel=social, activityLevel=active, friendlyLevel=friendly, size=size, ownerEmail = email, profilePic=profilePic)
     newKey = newDog.put()
     p.dogs.append(newKey)
     p.put()
@@ -28,5 +28,10 @@ def get_dog_by_id(ids):
     for dog in dogs:
         return dog
     return None
-
+def get_local_dogs(city, state):
+    dogs = Dog.query(Dog.city == city, Dog.state == state).fetch()
+    result = []
+    for dog in dogs:
+        result.append(dog)
+    return result
 

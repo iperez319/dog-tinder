@@ -102,6 +102,10 @@ class ProfileViewHandler(webapp2.RequestHandler):
                     print(currDog.keyUrl)
                     dogs.append(currDog)
                 values['dogs'] = dogs
+            # Dog Matching Process Starts Here
+                localDogs = data.get_local_dogs(profile.city, profile.state)
+                # Insert Custom Scoring
+                # See list of compatible breeds
             render_template(self, 'profile-view.html', values)
 class AddDogHandler(webapp2.RequestHandler):
     def get(self):

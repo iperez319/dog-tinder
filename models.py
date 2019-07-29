@@ -10,7 +10,7 @@ class Dog(ndb.Model):
     activityLevel = ndb.StringProperty()
     friendlyLevel = ndb.StringProperty()
     profilePic = ndb.BlobProperty()
-    ownerName = ndb.StringProperty()
+    ownerEmail = ndb.StringProperty()
 
 class UserProfile(ndb.Model):
     name = ndb.StringProperty()
