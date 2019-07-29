@@ -29,9 +29,8 @@ def get_dog_by_id(ids):
         return dog
     return None
 def get_local_dogs(city, state):
-    dogs = Dog.query(Dog.city == city, Dog.state == state).fetch()
-    result = []
-    for dog in dogs:
-        result.append(dog)
-    return result
-
+    results = []
+    p = UserProfile(ndb.AND(UserProfile.city == city, UserProfile.state == state))
+    for profile in p:
+        for dog in profile.dogs:
+            results.append(dog)
