@@ -2,11 +2,16 @@
 {% block content %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {       
-
+        window.setTimeout(() => {
+            var btn = document.getElementById("addDogBtn")
+            btn.classList.add("scale-in")
+        }, 500)
+        
     });
 </script>
+<div class="container">
 <div class="fixed-action-btn">
-  <a class="btn-floating btn-large red waves-effect waves-light scale-transition scale-out" href="/add-dog" id=">
+  <a class="btn-floating btn-large red waves-effect waves-light scale-transition scale-out" href="/add-dog" id="addDogBtn">
     <i class="large material-icons">add</i>
   </a>
 </div>
@@ -48,5 +53,6 @@
     {% else %}
     There are no dogs
     {% endif %}
+</div>
 </div>
 {% endblock %}

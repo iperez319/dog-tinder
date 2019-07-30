@@ -11,11 +11,11 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
       <script type="text/javascript" src="/i/js/script.js"></script>
       <!--JavaScript at end of body for optimized loading-->
-      <nav>
+      <nav class="grey lighten-5">
          <div class="nav-wrapper" style="margin-left:20px">
             <a href="/" class="brand-logo">
                 <div class="valign-wrapper">
-                    <img src="/i/logoBg.png" style="width:50px;margin-top:7px;border-radius:40%"/>
+                    <img src="/i/dogs.png" style="width:50px;margin-top:7px;border-radius:40%"/>
                 </div>
             </a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -31,7 +31,7 @@
          </div>
       </nav>
       <ul class="sidenav" id="mobile-demo">
-         <li class="logo" style="margin-top: 32px;margin-bottom: 5px; text-align:center;border-bottom: 1px solid rgba(0,0,0,0.14)"><img src="/i/logo.jpg" style="width:100px"/></li>
+         <li class="logo" style="margin-top: 32px;margin-bottom: 5px; text-align:center;border-bottom: 1px solid rgba(0,0,0,0.14)"><img src="/i/logo.png" style="width:100px"/></li>
         {% if login_url %} 
         <li><a href="{{login_url}}">Login</a></li>
         {% else %}
@@ -40,10 +40,10 @@
         <li><a href="{{logout_url}}">Logout</a></li>
         {% endif %}
       </ul>
-      <div class="container">
+      
          {% block content %}{% endblock %} 
-      </div>
-      <footer class="page-footer">
+      
+      <!-- <footer class="page-footer">
          <div class="container">
             <div class="row">
                <div class="col l6 s12">
@@ -84,6 +84,6 @@
                Links</a>
             </div>
          </div>
-      </footer>
+      </footer> -->
    </body>
 </html>
