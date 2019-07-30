@@ -82,8 +82,8 @@ class ProfileSaveHandler(webapp2.RequestHandler):
             else:
                 data.save_profile(email, name, city, state)
                 values['successmsg'] = 'Successfully saved!'
-
-            render_template(self, 'profile-edit.html', values)
+            self.redirect('/profile-view')
+            #render_template(self, 'profile-edit.html', values)
 
 class ProfileViewHandler(webapp2.RequestHandler):
     def get(self):

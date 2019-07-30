@@ -2,14 +2,22 @@
 {% block content %}
 <div id = "main">
     Welcome to the edit page! Add your name, your dog's name, and a brief description of your dog! <br><br>
+    <div class="row">
     <form method = "post" action = "/profile-save">
-        Name:<br>
-        <input type="text" name = "name" value="{{name}}"><br><br>
-        City:<br>
-        <input type="text" name="city" value="{{city}}"><br><br>
-        State:<br>
-        <input type="text" name="state" value="{{state}}"><br><br>
-        <input type = "submit">
+        <div class="row input-field">
+        <input type="text" name="name" value="{{name}}" class="validate" id="name">
+        <label for="name">Name</label>
+        </div>
+        <div class="row input-field">
+            <input type="text" name="city" id="city" value="{{city}}" class="validate">
+            <label for="city">City</label>
+        </div>
+        <div class="rowi input-field">
+            <input type="text" name="state" id="state" value="{{state}}" class="validate">
+            <label for="state">State</label>
+        </div>
+        <button type="submit" class="waves-effect waves-light btn">Submit</button>
     </form>
+    </div>
 </div>
 {% endblock %}

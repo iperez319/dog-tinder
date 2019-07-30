@@ -1,62 +1,165 @@
 {% extends "_base.html" %}
 {%block content %}
-<div>        
+<div>
+    
+    <h1>Add Dog: Tell us more about your dog!</h1>
+    <div class="row">
     <form method="post" enctype="multipart/form-data">
+            <div class="row input-field">
+                <input type="text" name="name" class="validate" id="name">
+                <label for="name">Name</label>
+            </div>
+            <div class="row input-field">
+                <input type="text" name="breed" class="validate" id="breed">
+                <label for="breed">Breed</label>
+            </div>
+            <div class="row">
+                <h5>Gender</h5>
+                <p>
+                    <label>
+                        <input type="radio" value="Female" name="gender">
+                        <span>Female</span>
+                    </label>
+                </p>
+                 <p>
+                    <label>
+                        <input type="radio" value="Male" name="gender">
+                        <span>Male</span>
+                    </label>
+                </p>
+            </div>
+            <div class="row">
+                <h5>Age</h5>
+                <p>
+                    <label>
+                        <input type="radio" value="1" name="age">
+                        <span>Puppy: Less than 2 years</span>
+                    </label>
+                </p>
+                 <p>
+                    <label>
+                        <input type="radio" value="2" name="age">
+                        <span>Adolecsent: 2-3 years old</span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input type="radio" value="3" name="age">
+                        <span>Adult: 4-9 years old</span>
+                    </label>
+                </p>
+                 <p>
+                    <label>            
+                        <input type="radio" value="4" name="age">
+                        <span>Senior: More than 9 years old</span>
+                    </label>
+                </p>
+            </div>
+            <div class="row">
+                <h5>Size</h5>
+                <p>
+                    <label>            
+                        <input type="radio" value="Toy" name="size">
+                        <span>Toy: Up to 12 pounds</span>
+                    </label>
+                </p>
+                <p>
+                    <label>            
+                        <input type="radio" value="Small" name="size">
+                        <span>Small: 12-25 pounds</span>
+                    </label>
+                </p>
+                <p>
+                    <label>            
+                        <input type="radio" value="Medium" name="size">
+                        <span>Medium: 25-50 pounds</span>
+                    </label>
+                </p>
+                <p>
+                    <label>            
+                        <input type="radio" value="Large" name="size">
+                        <span>Large: 50-100 pounds</span>
+                    </label>
+                </p>
+                <p>
+                    <label>            
+                        <input type="radio" value="Extra Large" name="size">
+                        <span>Extra Large: More than 100 pounds</span>
+                    </label>
+                </p>        
+            </div>
+            <div class="row">
+                <h5>Social</h5>
+                <p>
+                    <label>            
+                        <input type="radio" value="Social" name="social">
+                        <span>Social. Will initiate plays</span>
+                    </label>
+                </p>
+                <p>
+                    <label>            
+                        <input type="radio" value="Shy" name="social">
+                        <span>Shy. Will wait until play is initiated</span>
+                    </label>
+                </p>
+            </div>
+            <div class="row">
+                <h5>Active</h5>
+                <p>
+                    <label>            
+                        <input type="radio" value="1" name="active">
+                        <span>Not really active. Would play for less than 15 minutes</span>
+                    </label>
+                </p>
+                <p>
+                    <label>            
+                        <input type="radio" value="2" name="active">
+                        <span>A little active. Would play for 15 minutes</span>
+                    </label>
+                </p>
+                <p>
+                    <label>            
+                        <input type="radio" value="3" name="active">
+                        <span>Medium level of activeness. Would play for 15-30 minutes</span>
+                    </label>
+                </p>
+                <p>
+                    <label>            
+                        <input type="radio" value="4" name="active">
+                        <span>Very active, never gets bored. Could play for 30-60 minutes</span>
+                    </label>
+                </p>
+            </div>
 
-        <center>
-            <h1>Add Dog: Tell us more about your dog!</h1>
-
-            <br>
-            <h3> What is your dog's name?</h3>
-            <input type="text" name="name">
-            <h3>What is your dog's breed?</h3>
-            <input type="text" name="breed">
-
-
-            <h3>Is your dog female or male?</h3>
-            <input type="radio" value="Female" name="gender"> Female<br>
-            <input type="radio" value="Male" name="gender"> Male<br>
-
-            <h3>What is your dog's age?</h3>
-            <input type="radio" value="1" name="age">Puppy: Less than 2 years. <br>
-            <input type="radio" value="2" name="age"> Adolecsent: 2-3 years old.<br>
-            <input type="radio" value="3" name="age"> Adult: 4-9 years old.<br>
-            <input type="radio" value="4" name="age"> Senior: More than 9 years old. <br>
-
-
-            <h3>What is your dog's size?</h3>
-            <input type="radio" value="Toy" name="size"> Toy: Up to 12 pounds. <br>
-            <input type="radio" value="Small" name="size"> Small: 12-25 pounds.<br>
-            <input type="radio" value="Medium" name="size"> Medium: 25-50 pounds.<br>
-            <input type="radio" value="Large" name="size"> Large: 50-100 pounds. <br>
-            <input type="radio" value="Extra Large" name="size"> Extra Large: More than 100 pounds.<br>
-
-            <h3>Is your dog social or shy?</h3>
-            <input type="radio" value="Social" name="social"> Social. Will initiate play.<br>
-            <input type="radio" value="Shy" name="social"> Shy. Will wait until play is initiated.<br>
-
-
-            <h3>How active is your dog?</h3>
-            <input type="radio" value="1" name="active"> Not really active. Would play for less than 15 minutes.<br>
-            <input type="radio" value="2" name="active"> A little active. Would play for 15 minutes.<br>
-            <input type="radio" value="3" name="active"> Medium level of activeness. Would play for 15-30 minutes.<br>
-            <input type="radio" value="4" name="active"> Very active, never gets bored. Could play for 30-60 minutes.<br>
-
-
-            <h3>Is your dog friendly?</h3>
-            <input type="radio" value="Yes" name="friendly"> Yes. <br>
-            <input type="radio" value="No" name="friendly">No.<br>
-
-
-            <h3>Pick a profile picture for your dog!</h3>
-            <input type="file" name="profilePic"> <br>
-
-
-            <br>
-            <br>
-            <input type="submit" value="Submit">
-
-        </center>
+            <!-- <div class="row">
+                <h5>Friendlh</h5>
+                <p>
+                    <label>            
+                        <input type="radio" value="Yes" name="friendly">
+                        <span>Yes</span>
+                    </label>
+                </p>
+                <p>
+                    <label>            
+                        <input type="radio" value="No" name="friendly">
+                        <span>No</span>
+                    </label>
+                </p>
+            </div> -->
+            <div class="row">
+                <h5>Picture</h5>
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>File</span>
+                        <input type="file" name="profilePic">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="waves-effect waves-light btn">Submit</button>
     </form>
+    </div>
 </div>
 {% endblock %}
