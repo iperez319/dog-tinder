@@ -1,10 +1,20 @@
 {% extends "_base.html" %}
 {% block content %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {       
+
+    });
+</script>
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large red waves-effect waves-light scale-transition scale-out" href="/add-dog" id=">
+    <i class="large material-icons">add</i>
+  </a>
+</div>
 <div>
     <h2>{{name}}</h2>
     <h4>{{city}}, {{state}}</h4>
     <br>
-    <h3>Dogs</h3>
+    <h3>My Dogs</h3>
     {% if dogs %}
         <div>
         {% for dog in dogs %}
@@ -21,7 +31,7 @@
         </div> -->
         <div class="row">
             <div class="col s12 m7">
-            <div class="card" href="/">
+            <div class="card" onclick="window.location.pathname = '/view-dog/{{dog.keyUrl}}'">
                 <div class="card-image">
                 <img src="/img?img_id={{dog.keyUrl}}">
                 <span class="card-title">{{dog.name}}</span>
@@ -38,6 +48,5 @@
     {% else %}
     There are no dogs
     {% endif %}
-    <a href="/add-dog">Add a new dog</a>
 </div>
 {% endblock %}
