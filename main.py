@@ -103,7 +103,7 @@ class ProfileViewHandler(webapp2.RequestHandler):
                     print(currDog.keyUrl)
                     dogs.append(currDog)
                 values['dogs'] = dogs
-                #data.populate_dogs()
+                data.populate_dogs()
             render_template(self, 'profile-view.html', values)
 class AddDogHandler(webapp2.RequestHandler):
     def get(self):

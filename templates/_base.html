@@ -8,27 +8,32 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
    </head>
    <body>
+       <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
       <script type="text/javascript" src="/i/js/script.js"></script>
       <!--JavaScript at end of body for optimized loading-->
-      <nav class="light-blue">
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href="/profile-edit" style="font-size:20px;font-weight:bold">Edit</a></li>
+        <li><a href="/profile-view" style="font-size:20px;font-weight:bold">View</a></li>
+      </ul>
+      <nav class="light-blue" style="opacity:0.78">
          <div class="nav-wrapper" style="margin-left:20px">
             <a href="/" class="brand-logo">
                 <div class="valign-wrapper">
                     <!-- <img src="/i/blueLogo.jpg" style="width:50px;margin-top:7px;border-radius:40%"/> -->
-                    <center>
-                    Dog.Go
-                    </center>
+                    <img src="/i/iconNew.jpg" style="width:150px;margin-top:7px"/>
                 </div>
             </a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                {% if login_url %} 
-               <li><a href="{{login_url}}">Login</a></li>
+               <li><a href="{{login_url}}" style="font-size:20px;font-weight:bold">Login</a></li>
                {% else %}
-               <li><a href="/profile-edit">Edit My Profile</a></li>
-               <li><a href="/profile-view">View My Profile</a></li>
-               <li><a href="{{logout_url}}">Logout</a></li>
+               <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" style="font-size:20px;font-weight:bold">My Profile<i class="material-icons right">arrow_drop_down</i></a></li>
+               <li><a href="{{logout_url}}" style="font-size:20px;font-weight:bold">Logout</a></li>
                {% endif %}
             </ul>
          </div>

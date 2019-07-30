@@ -3,3 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
             var instances = M.Sidenav.init(elems, {});
 
 });
+
+// $(".dropdown-trigger").dropdown();
+$( document ).ready(() => {
+    $(".dropdown-trigger").dropdown();
+})
