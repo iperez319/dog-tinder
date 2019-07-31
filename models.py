@@ -18,4 +18,7 @@ class UserProfile(ndb.Model):
     dogs = ndb.KeyProperty(Dog, repeated=True)
     city = ndb.StringProperty()
     state = ndb.StringProperty()
+    age = ndb.IntegerProperty()
+    sex = ndb.StringProperty(choices=["Female", "Male", "Prefer not to say"])
+    profilePic = ndb.BlobProperty()
 

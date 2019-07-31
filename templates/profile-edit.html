@@ -1,24 +1,58 @@
 {% extends "_base.html" %}
 {% block content %}
+<script>
+$(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
 <div class="container">
 <div id = "main">
-    <h3>Edit your profile</h3>
     <div class="row">
-    <form method = "post" action = "/profile-save">
-        <div class="row input-field">
+    <div style="col s6">
+    <h3 style="color:#16547A">Edit profile</h3>
+    </div>
+    <br>
+    <form method = "post" action = "/profile-save" enctype="multipart/form-data">
+        <div class="input-field col s8">
         <input type="text" name="name" value="{{name}}" class="validate" id="name">
         <label for="name">Name</label>
         </div>
-        <div class="row input-field">
+        <div class="input-field col s8">
+            <select name="sex">
+                <option value="" disabled selected>Choose your own option</option>
+                <option value="Female" {% if sex == "Female" %} selected {% endif%} >Female</option>
+                <option value="Male" {% if sex == "Male" %} selected {% endif%}>Male</option>
+                <option value="Prefer not to say" {% if sex == "Prefer not to say" %} selected {% endif%}>Prefer not to say</option>
+            </select>
+            <label>Sex</label>
+        </div>
+        <div class="input-field col s8">
+            <input type="number" name="age" id="age" value="{{age}}" class="validate">
+            <label for="age">Age</label>
+        </div>
+        <div class="input-field col s8">
             <input type="text" name="city" id="city" value="{{city}}" class="validate">
             <label for="city">City</label>
         </div>
-        <div class="rowi input-field">
+        <div class="input-field col s8">
             <input type="text" name="state" id="state" value="{{state}}" class="validate">
             <label for="state">State</label>
         </div>
-        <button type="submit" class="waves-effect waves-light btn">Submit</button>
+        <div class="file-field input-field col s8">
+            <div class="btn">
+                <span>Picture</span>
+                <input type="file" name="profilePic">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+                </div>
+            
+        <div class="col s4 offset-s4">
+        <button type="submit" class="waves-effect waves-light btn-large red">Submit</button>
+        </div>
     </form>
     </div>
 </div>
+<img src="/i/abstract-dog-on-white.jpg" style="bottom: 0;position: absolute;height: 600px;right: 0;width: auto;">
 {% endblock %}

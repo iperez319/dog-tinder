@@ -16,8 +16,26 @@
   </a>
 </div>
 <div>
-    <h2>{{name}}</h2>
-    <h4>{{city}}, {{state}}</h4>
+    <div class="col s12 m7">
+    <div class="card horizontal">
+      <div class="card-image">
+        <img src="/img?img_id={{keyUrl}}&type=User">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+            <h3>{{name}}</h3>
+            <h5>{{city}}, {{state}}</h5>
+            <h4>{{age}} years old</h4>
+            <h4>{{sex}}</h4>
+        </div>
+        <!-- <div class="card-action">
+          <a href="#">This is a link</a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+    <!-- <h2>{{name}}</h2>
+    <h4>{{city}}, {{state}}</h4> -->
     <br>
     <h3>My Dogs</h3>
     {% if dogs %}
@@ -38,7 +56,7 @@
             <div class="col s12 m7">
             <div class="card" onclick="window.location.pathname = '/view-dog/{{dog.keyUrl}}'">
                 <div class="card-image">
-                <img src="/img?img_id={{dog.keyUrl}}">
+                <img src="/img?img_id={{dog.keyUrl}}&type=Dog">
                 <span class="card-title">{{dog.name}}</span>
                 </div>
                 <div class="card-content">

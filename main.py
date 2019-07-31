@@ -46,6 +46,8 @@ class ProfileEditHandler(webapp2.RequestHandler):
                 values["email"] = get_user_email()
                 values["city"] = profile.city
                 values["state"] = profile.state
+                values['sex'] = profile.sex
+                values['age'] = profile.age
             render_template(self, 'profile-edit.html', values)
 class ProfileSaveHandler(webapp2.RequestHandler):
     def post(self):
@@ -57,6 +59,9 @@ class ProfileSaveHandler(webapp2.RequestHandler):
             name = self.request.get('name')
             city = self.request.get('city')
             state = self.request.get('state')
+            age = self.request.get('age')
+            sex = self.request.get('sex')
+            profilePic = self.request.get('profilePic')
             print(city)
             if len(name) < 2:
                 error_text += 'Your name must be at least 2 characters.\n'
@@ -76,11 +81,13 @@ class ProfileSaveHandler(webapp2.RequestHandler):
             values['email'] = get_user_email()
             values['city'] = city
             values['state'] = state
-
+            values['sex'] = sex
+            values['age'] = age
+            values['profilePic'] = profilePic
             if error_text:
                 values['errormsg'] = error_text
             else:
-                data.save_profile(email, name, city, state)
+                data.save_profile(email, name, city, state, sex, age, profilePic)
                 values['successmsg'] = 'Successfully saved!'
             self.redirect('/profile-view')
             #render_template(self, 'profile-edit.html', values)
@@ -92,10 +99,15 @@ class ProfileViewHandler(webapp2.RequestHandler):
         else:
             values = get_template_parameters()
             profile = data.get_user_profile(get_user_email())
+
             if profile:
-                values['name'] = profile.name
-                values['city'] = profile.city
-                values['state'] = profile.state
+                values["name"] = profile.name
+                values["email"] = get_user_email()
+                values["city"] = profile.city
+                values["state"] = profile.state
+                values['sex'] = profile.sex
+                values['age'] = profile.age
+                values['keyUrl'] = profile.key.urlsafe()
                 dogs = []
                 for dog in profile.dogs:
                     currDog = dog.get()
@@ -163,13 +175,24 @@ class ViewDogHandler(webapp2.RequestHandler):
 
 class Image(webapp2.RequestHandler):
     def get(self):
-        dog_key = ndb.Key(urlsafe=self.request.get('img_id'))
-        dog = dog_key.get()
-        if dog.profilePic:
-            self.response.headers['Content-Type'] = 'image/jpeg'
-            self.response.out.write(dog.profilePic)
+        t = self.request.get('type')
+        if t == "Dog":
+            dog_key = ndb.Key(urlsafe=self.request.get('img_id'))
+            dog = dog_key.get()
+            if dog.profilePic:
+                self.response.headers['Content-Type'] = 'image/jpeg'
+                self.response.out.write(dog.profilePic)
+            else:
+                self.response.out.write('No image')
         else:
-            self.response.out.write('No image')
+            user_key = ndb.Key(urlsafe=self.request.get('img_id'))
+            user = user_key.get()
+            if user.profilePic:
+                self.response.headers['Content-Type'] = 'image/jpeg'
+                self.response.out.write(user.profilePic)
+            else:
+                self.response.out.write('No image')
+        
 
 app = webapp2.WSGIApplication([
     ('/profile-view', ProfileViewHandler),

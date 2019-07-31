@@ -3,14 +3,17 @@ from models import Dog
 from google.appengine.ext import ndb
 from random import choice
 
-def save_profile(email, name, city, state):
+def save_profile(email, name, city, state, sex, age, profilePic):
     p = get_user_profile(email)
     if p:
         p.name = name
         p.city = city
         p.state = state
+        p.sex = sex
+        p.age = int(age)
+        p.profilePic = profilePic
     else:
-        p = UserProfile(name=name, email=email, city=city, state=state)
+        p = UserProfile(name=name, email=email, city=city, state=state, sex=sex, age=int(age), profilePic=profilePic)
     p.put()
 def get_user_profile(email):
     p = UserProfile.query(UserProfile.email == email)
@@ -48,7 +51,7 @@ def breed_match(breed1, breed2):
         if breed2 in dic[breed1]:
             return True
     elif breed2 in dic:
-        if bree1 in dic[breed2]:
+        if breed1 in dic[breed2]:
             return True
     else:
         if breed1 == breed2:
