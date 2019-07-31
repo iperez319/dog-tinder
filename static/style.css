@@ -1,27 +1,43 @@
-body {
-    font-family: Helvetica, Sans-serif;
-    font-size: 14px;
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 500px;
+}
+	/* flip the pane when hovered */
+	.flip-container:hover .flipper, .flip-container.hover .flipper {
+		transform: rotateY(180deg);
+        transition: transform 0.5s;
+	}
+
+.flip-container, .front, .back {
+	width: 320px;
+	height: 400px;
 }
 
-a {
-    text-decoration: underline;
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
 }
 
-a:hover {
-    text-decoration: none;
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
-#topmenu {
-    padding-bottom: 10px;
-    text-align: center;
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
 }
 
-#successmsg {
-    font-weight: bold;
-    color: green;
-}
-
-#errormsg {
-    font-weight: bold;
-    color: red;
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
 }
