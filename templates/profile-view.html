@@ -17,7 +17,7 @@
 </div>
 <div style="padding-top:75px"></div>
 <div>
-    <div class="col s12 m7">
+    <!-- <div class="col s12 m7">
     <div class="card horizontal">
       <div class="card-image">
         <img src="/img?img_id={{keyUrl}}&type=User">
@@ -29,14 +29,17 @@
             <h4>{{age}} years old</h4>
             <h4>{{sex}}</h4>
         </div>
-        <!-- <div class="card-action">
-          <a href="#">This is a link</a>
-        </div> -->
       </div>
     </div>
-  </div>
-    <!-- <h2>{{name}}</h2>
-    <h4>{{city}}, {{state}}</h4> -->
+  </div> -->
+    <div class="row">
+        <div class="col s6">
+            <img src="/img?img_id={{keyUrl}}&type=User" style="border-radius:50%">
+        </div>
+        <div class="col s6">
+            <h1>Testing</h1>
+        </div>
+    </div>
     <br>
     <h3>My Dogs</h3>
     {% if dogs %}
