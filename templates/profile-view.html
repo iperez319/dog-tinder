@@ -1,7 +1,7 @@
 {% extends "_base.html" %}
 {% block content %}
 <script>
-    document.addEventListener('DOMContentLoaded', function() {       
+	document.addEventListener('DOMContentLoaded', function() {       
         window.setTimeout(() => {
             var btn = document.getElementById("addDogBtn")
             btn.classList.add("scale-in")
@@ -9,15 +9,83 @@
         
     });
 </script>
-<div class="container">
-<div class="fixed-action-btn">
-  <a class="btn-floating btn-large red waves-effect waves-light scale-transition scale-out" href="/add-dog" id="addDogBtn">
-    <i class="large material-icons">add</i>
-  </a>
-</div>
-<div style="padding-top:75px"></div>
-<div>
-    <!-- <div class="col s12 m7">
+<!-- <div class="container"> -->
+	<div class="fixed-action-btn">
+		<a class="btn-floating btn-large red waves-effect waves-light scale-transition scale-out" href="/add-dog"
+			id="addDogBtn">
+			<i class="large material-icons">add</i>
+		</a>
+	</div>
+    <div class="row">
+			<div class="col s6">
+				<div class="z-depth-4" style="margin-left:175px;margin-top:100px;width:auto;display:inline-block;padding:50px;border-radius:10px;">
+					<!-- box-shadow:0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) -->
+                    <center>
+					<img class="z-depth-3" src="/img?img_id={{keyUrl}}&type=User" style="border-radius:50%;width:150px;">
+                    </center>
+					<h4 style="font-size:30px;font-weight:500;margin-bottom:10px">{{name}}</h4>
+					<h5 style="font-weight:300;margin-bottom:-10px">{{sex}}, {{age}} years old</h5>
+					<h5 style="font-weight:300;margin-bottom:-10px">{{city}}, {{state}}</h5>
+					<h5 style="font-weight:300;margin-bottom:-10px">{{email}}</h5>
+	            </div>
+			</div>
+			<div class="col s6">
+                <center>
+				<h2 style="margin-top:95px;color:#16547A;font-size:40px">My Dogs</h2>
+                </center>
+                <div class="row">
+			{% if dogs %}
+            <center>
+			<div>
+                
+				{% for dog in dogs %}
+				<!-- <div>
+            <div>
+            Name: {{dog.name}}<br>
+            Breed: {{dog.breed}}<br>
+            Gender: {{dog.gender}}<br>
+            </div>
+            <br>
+            <a href  = "/view-dog/{{dog.keyUrl}}">
+            <img src="/img?img_id={{dog.keyUrl}}" href="/view-dog/{{dog.keyUrl}}"/>
+            </a>
+        </div> -->
+				<div class="row">
+					<div class="col s12 m7">
+						<div class="card" onclick="window.location.pathname = '/view-dog/{{dog.keyUrl}}'">
+							<div class="card-image">
+								<img src="/img?img_id={{dog.keyUrl}}&type=Dog">
+								<span class="card-title">{{dog.name}}</span>
+							</div>
+							<div class="card-content">
+								<p>{{dog.breed}}, {{dog.gender}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+                </center>
+			</div>
+		</div>
+		<br><br>
+    {% else %}
+		<br>
+		<br>
+        <br>
+        <br>
+		<center>
+			<img src="/i/nodata.svg" style="width:100px">
+			<h5 style="font-weight:300;color:#C9C9C9">No dogs</h5>
+			<center>
+				{% endif %}
+	</div>
+                </center>
+			</div>
+		</div>
+    
+	<div style="padding-top:75px"></div>
+	<div>
+		<!-- <div class="col s12 m7">
     <div class="card horizontal">
       <div class="card-image">
         <img src="/img?img_id={{keyUrl}}&type=User">
@@ -32,54 +100,9 @@
       </div>
     </div>
   </div> -->
-    <div class="row">
-        <div class="col s6">
-            <img src="/img?img_id={{keyUrl}}&type=User" style="border-radius:50%">
-        </div>
-        <div class="col s6">
-            <h1>Testing</h1>
-        </div>
-    </div>
-    <br>
-    <h3>My Dogs</h3>
-    {% if dogs %}
-        <div>
-        {% for dog in dogs %}
-        <!-- <div>
-            <div>
-            Name: {{dog.name}}<br>
-            Breed: {{dog.breed}}<br>
-            Gender: {{dog.gender}}<br>
-            </div>
-            <br>
-            <a href  = "/view-dog/{{dog.keyUrl}}">
-            <img src="/img?img_id={{dog.keyUrl}}" href="/view-dog/{{dog.keyUrl}}"/>
-            </a>
-        </div> -->
-        <div class="row">
-            <div class="col s12 m7">
-            <div class="card" onclick="window.location.pathname = '/view-dog/{{dog.keyUrl}}'">
-                <div class="card-image">
-                <img src="/img?img_id={{dog.keyUrl}}&type=Dog">
-                <span class="card-title">{{dog.name}}</span>
-                </div>
-                <div class="card-content">
-                <p>{{dog.breed}}, {{dog.gender}}</p>
-                </div>
-            </div>
-            </div>
-        </div>
-        {% endfor %}
-        </div>
-        <br><br>
-    {% else %}
-    <br>
-    <br>
-    <center>
-    <img src="/i/nodata.svg" style="width:100px">
-    <h5 style="font-weight:300;color:#C9C9C9">No dogs</h5>
-    <center>
-    {% endif %}
-</div>
-</div>
+            
+		
+		<br>
+		
+<!-- </div> -->
 {% endblock %}
