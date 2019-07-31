@@ -19,7 +19,7 @@
             <div class="card" onclick="window.location.pathname = '/view-dog/{{dog.keyUrl}}'">
                 <div class="card-image">
                 <!-- <img src="/img?img_id={{dog.keyUrl}}"> -->
-                <img src="/img?img_id=aghkZXZ-Tm9uZXIQCxIDRG9nGICAgICAgPAJDA&type=Dog">
+                <img src="/img?img_id=aghkZXZ-Tm9uZXIQCxIDRG9nGICAgICAwLQIDA&type=Dog">
                 <span class="card-title">{{dog.name}}</span>
                 </div>
                 <div class="card-content">
@@ -39,7 +39,15 @@
     <img src="/img?img_id={{keyUrl}}"/>
     </div> -->
     {% endfor %}
-
+    <ul class="pagination">
+        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><a href="#!">1</a></li>
+        <li class="waves-effect"><a href="#!">2</a></li>
+        <li class="waves-effect"><a href="#!">3</a></li>
+        <li class="waves-effect"><a href="#!">4</a></li>
+        <li class="waves-effect"><a href="#!">5</a></li>
+        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
 </div>
 </div>
 {%endblock %}
