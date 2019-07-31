@@ -18,7 +18,7 @@
 	</div>
     <div class="row">
 			<div class="col s6">
-				<div class="z-depth-4" style="margin-left:175px;margin-top:100px;width:auto;display:inline-block;padding:50px;border-radius:10px;">
+				<div class="z-depth-4" style="margin-left:175px;margin-top:160px;width:auto;display:inline-block;padding:50px;border-radius:10px;">
 					<!-- box-shadow:0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) -->
                     <center>
 					<img class="z-depth-3" src="/img?img_id={{keyUrl}}&type=User" style="border-radius:50%;width:150px;">
@@ -30,32 +30,17 @@
 	            </div>
 			</div>
 			<div class="col s6">
-                <center>
 				<h2 style="margin-top:95px;color:#16547A;font-size:40px">My Dogs</h2>
-                </center>
                 <div class="row">
 			{% if dogs %}
-            <center>
-			<div>
-                
+			<div style="display:blocks;margin:auto">
 				{% for dog in dogs %}
-				<!-- <div>
-            <div>
-            Name: {{dog.name}}<br>
-            Breed: {{dog.breed}}<br>
-            Gender: {{dog.gender}}<br>
-            </div>
-            <br>
-            <a href  = "/view-dog/{{dog.keyUrl}}">
-            <img src="/img?img_id={{dog.keyUrl}}" href="/view-dog/{{dog.keyUrl}}"/>
-            </a>
-        </div> -->
 				<div class="row">
 					<div class="col s12 m7">
-						<div class="card" onclick="window.location.pathname = '/view-dog/{{dog.keyUrl}}'">
+						<div class="card z-depth-4" onclick="window.location.pathname = '/view-dog/{{dog.keyUrl}}'">
 							<div class="card-image">
 								<img src="/img?img_id={{dog.keyUrl}}&type=Dog">
-								<span class="card-title">{{dog.name}}</span>
+								<span class="card-title" style="font-weight:400">{{dog.name}}</span>
 							</div>
 							<div class="card-content">
 								<p>{{dog.breed}}, {{dog.gender}}</p>
@@ -64,9 +49,8 @@
 					</div>
 				</div>
 				{% endfor %}
-                </center>
 			</div>
-		</div>
+        </div>
 		<br><br>
     {% else %}
 		<br>
