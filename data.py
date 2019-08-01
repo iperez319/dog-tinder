@@ -29,7 +29,6 @@ def create_dog(email, name, breed, gender, age, size, social, active, profilePic
     p.put()
 def get_dog_by_id(ids):
     dogs = Dog.query(Dog.key == ids).fetch(1)
-    print(dog)
     for dog in dogs:
         return dog
     return None

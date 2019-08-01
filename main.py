@@ -201,6 +201,23 @@ class Image(webapp2.RequestHandler):
             else:
                 self.response.out.write('No image')
 
+class AboutHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        if not get_user_email():
+            profile = data.get_user_profile(get_user_email())
+            if profile:
+                values['name'] = profile.name
+        render_template(self, 'about-us.html', values)
+class GalleryHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        if not get_user_email():
+            profile = data.get_user_profile(get_user_email())
+            if profile:
+                values['name'] = profile.name
+        render_template(self, 'gallery.html', values)
+
 
 app = webapp2.WSGIApplication([
     ('/profile-view', ProfileViewHandler),
@@ -208,6 +225,8 @@ app = webapp2.WSGIApplication([
     ('/profile-edit', ProfileEditHandler),
     ('/add-dog', AddDogHandler),
     ('/view-dog/(.*)', ViewDogHandler),
+    ('/about-us', AboutHandler),
+    ('/gallery', GalleryHandler),
     ('/img', Image),
     ('.*', MainHandler)
     ])
