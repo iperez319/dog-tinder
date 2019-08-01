@@ -21,9 +21,9 @@ def get_user_profile(email):
     for profile in results:
         return profile
     return None
-def create_dog(email, name, breed, gender, age, size, social, active, friendly, profilePic):
+def create_dog(email, name, breed, gender, age, size, social, active, profilePic):
     p = get_user_profile(email)
-    newDog = Dog(name=name, breed=breed, age=age, gender=gender, socialLevel=social, activityLevel=active, friendlyLevel=friendly, size=size, ownerEmail = email, profilePic=profilePic)
+    newDog = Dog(name=name, breed=breed, age=age, gender=gender, socialLevel=social, activityLevel=active, size=size, ownerEmail = email, profilePic=profilePic)
     newKey = newDog.put()
     p.dogs.append(newKey)
     p.put()

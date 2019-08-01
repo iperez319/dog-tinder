@@ -1,6 +1,19 @@
 {% extends "_base.html" %}
 {% block content %}
 <script type="text/javascript">
+var numberOfPages = parseInt({{amountOfDogs}})
+$(document).ready( function(){
+    $('#pag').materializePagination({
+    align: 'center',
+    lastPage:  numberOfPages,
+    firstPage:  1,
+    urlParameter: 'page',
+    useUrlParameter: true,
+    onClickCallback: function(requestedPage){
+            window.location = window.location.pathname + "?page=" + requestedPage
+        }
+    });
+})
 
 
 
@@ -32,7 +45,7 @@
                      <div class="card medium z-depth-3">
                         <div class="card-image">
                            <!-- <img src="/img?img_id={{dog.keyUrl}}"> -->
-                           <img src="/img?img_id=aghkZXZ-Tm9uZXIQCxIDRG9nGICAgICAgOAKDA&type=Dog">
+                           <img src="/img?img_id={{dog.keyUrl}}">
                            <span class="card-title">{{dog.name}}</span>
                         </div>
                         <div class="card-content" style="height:100%;position:relative">
@@ -55,8 +68,10 @@
                             <div class="divider"></div>
                             <div style="padding-top:10px"></div>
                             <div>
-                                {{dog.activityLevel}}
-                                {{dog.socialLevel}}
+                                <h5> <b>Age:</b> {{age}} </h5>
+                                <h5><b>Size:</b> {{size}}</h5>
+                                <h5><b>Social Level:</b> {{social}}</h5>
+                                <h5><b>Activity Level:</b> {{active}}</h5>
                             </div>
                         </div>
                   </div>
@@ -66,15 +81,7 @@
          <!-- </div> -->
          {% endfor %}
       </div>
-      <ul class="pagination">
-         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-         <li class="active"><a href="#!">1</a></li>
-         <li class="waves-effect"><a href="#!">2</a></li>
-         <li class="waves-effect"><a href="#!">3</a></li>
-         <li class="waves-effect"><a href="#!">4</a></li>
-         <li class="waves-effect"><a href="#!">5</a></li>
-         <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-      </ul>
-   </div>
-</div>
-{%endblock %}
+      <div id="pag"></div>
+    </div>
+    {%endblock %}
+

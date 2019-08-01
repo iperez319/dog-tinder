@@ -7,6 +7,7 @@ from google.appengine.api import users
 from google.appengine.ext.webapp import template
 from google.appengine.ext import ndb
 from models import Dog
+import math
 
 def render_template(handler, file_name, template_values):
     path = os.path.join(os.path.dirname(__file__), 'templates/', file_name)
@@ -139,9 +140,8 @@ class AddDogHandler(webapp2.RequestHandler):
             size = self.request.get('size')
             social = self.request.get('social')
             active = self.request.get('active')
-            friendly = self.request.get('friendly')
             profilePic = self.request.get('profilePic')
-        data.create_dog(get_user_email(), name, breed, gender, age, size, social, active, friendly, profilePic)
+        data.create_dog(get_user_email(), name, breed, gender, age, size, social, active, profilePic)
         self.redirect('/profile-view')
 class ViewDogHandler(webapp2.RequestHandler):
     def get(self, dog_id):
@@ -151,6 +151,11 @@ class ViewDogHandler(webapp2.RequestHandler):
             values = get_template_parameters()
             profile = data.get_user_profile(get_user_email())
             dog_key = ndb.Key(urlsafe=dog_id)
+            page = self.request.get('page')
+            if page:
+                page = int(page)
+            else:
+                page = 1
             dog = dog_key.get()
             values["name"] = dog.name
             values["breed"] = dog.breed
@@ -159,10 +164,9 @@ class ViewDogHandler(webapp2.RequestHandler):
             values["size"] = dog.size
             values["social"] = dog.socialLevel
             values["active"] = dog.activityLevel
-            values["friendly"] = dog.friendlyLevel
             values["keyUrl"] = dog_id
             localDogs = data.get_local_dogs(get_user_email(), profile.city, profile.state)
-            print(localDogs)
+            values["amountOfDogs"] = math.ceil(len(localDogs)/float(6))
             scoredDogs = []
             for d in localDogs:
                 d.score = data.score_dog(dog ,d)
@@ -170,45 +174,13 @@ class ViewDogHandler(webapp2.RequestHandler):
                 d.profile = data.get_user_profile(d.ownerEmail)
                 d.profile.keyUrl = d.profile.key.urlsafe()
                 scoredDogs.append(d)
+            # NEW CHANGES #################
             scoredDogs.sort(key=lambda d: d.score, reverse=True)
-            values["matchedDogs"] = scoredDogs
+            subset = []
+            for di in range((page - 1) * 6, min(len(localDogs), ((page - 1) * 6) + 6)):
+                subset.append(scoredDogs[di])                
+            values["matchedDogs"] = subset
             render_template(self, 'view-dog.html', values)
-class GetMatchesHandler(webapp2.RequestHandler):
-    def get(self):
-        page = int(self.request.get('page'))
-        dog_id=self.request.get('dog_id')
-        dog_key = ndb.Key(urlsafe=dog_id)
-        dog = dog_key.get()
-        print(dog)
-        profile = data.get_user_profile(get_user_email())
-        localDogs = data.get_local_dogs(get_user_email(), profile.city, profile.state)
-        scoredDogs = []
-        ret = []
-        for d in localDogs:
-            d.score = data.score_dog(dog ,d)
-            d.keyUrl = d.key.urlsafe()
-            d.profile = data.get_user_profile(d.ownerEmail)
-            d.profile.keyUrl = d.profile.key.urlsafe()
-            scoredDogs.append(d)
-        scoredDogs.sort(key=lambda d: d.score, reverse=True)
-        for di in range((page - 1) * 6, min(len(localDogs), ((page - 1) * 6) + 6)):
-            d = scoredDogs[di]
-            res = {}
-            res['score'] = d.score
-            res['keyUrl'] = d.key.urlsafe()
-            prof=d.profile
-            res['profile'] = {'email': prof.email, 'name': prof.name, 'keyUrl': prof.key.urlsafe()}
-            res['age'] = d.age
-            res['activityLevel'] = d.activityLevel
-            res['socialLevel'] = d.socialLevel
-            res['breed'] = d.breed
-            res['name'] = d.name
-            ret.append(res)
-        #scoredDogs.sort(key=lambda d: d['score'], reverse=True)
-        result = {"result": ret, "records": len(localDogs)}
-        self.response.headers['Content-Type'] = 'application/json'
-        self.response.out.write(json.dumps(result))
-
 class Image(webapp2.RequestHandler):
     def get(self):
         t = self.request.get('type')
@@ -237,6 +209,5 @@ app = webapp2.WSGIApplication([
     ('/add-dog', AddDogHandler),
     ('/view-dog/(.*)', ViewDogHandler),
     ('/img', Image),
-    ('/getMatches', GetMatchesHandler),
     ('.*', MainHandler)
     ])

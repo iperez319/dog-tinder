@@ -8,7 +8,6 @@ class Dog(ndb.Model):
     size = ndb.StringProperty()
     socialLevel = ndb.StringProperty()
     activityLevel = ndb.StringProperty()
-    friendlyLevel = ndb.StringProperty()
     profilePic = ndb.BlobProperty()
     ownerEmail = ndb.StringProperty()
 
