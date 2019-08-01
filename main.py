@@ -1,6 +1,7 @@
 import os
 import data
 import webapp2
+import json
 
 from google.appengine.api import users
 from google.appengine.ext.webapp import template
@@ -172,8 +173,41 @@ class ViewDogHandler(webapp2.RequestHandler):
             scoredDogs.sort(key=lambda d: d.score, reverse=True)
             values["matchedDogs"] = scoredDogs
             render_template(self, 'view-dog.html', values)
-
-
+class GetMatchesHandler(webapp2.RequestHandler):
+    def get(self):
+        page = int(self.request.get('page'))
+        dog_id=self.request.get('dog_id')
+        dog_key = ndb.Key(urlsafe=dog_id)
+        dog = dog_key.get()
+        print(dog)
+        profile = data.get_user_profile(get_user_email())
+        localDogs = data.get_local_dogs(get_user_email(), profile.city, profile.state)
+        scoredDogs = []
+        ret = []
+        for d in localDogs:
+            d.score = data.score_dog(dog ,d)
+            d.keyUrl = d.key.urlsafe()
+            d.profile = data.get_user_profile(d.ownerEmail)
+            d.profile.keyUrl = d.profile.key.urlsafe()
+            scoredDogs.append(d)
+        scoredDogs.sort(key=lambda d: d.score, reverse=True)
+        for di in range((page - 1) * 6, min(len(localDogs), ((page - 1) * 6) + 6)):
+            d = scoredDogs[di]
+            res = {}
+            res['score'] = d.score
+            res['keyUrl'] = d.key.urlsafe()
+            prof=d.profile
+            res['profile'] = {'email': prof.email, 'name': prof.name, 'keyUrl': prof.key.urlsafe()}
+            res['age'] = d.age
+            res['activityLevel'] = d.activityLevel
+            res['socialLevel'] = d.socialLevel
+            res['breed'] = d.breed
+            res['name'] = d.name
+            ret.append(res)
+        #scoredDogs.sort(key=lambda d: d['score'], reverse=True)
+        result = {"result": ret, "records": len(localDogs)}
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.out.write(json.dumps(result))
 
 class Image(webapp2.RequestHandler):
     def get(self):
@@ -203,5 +237,6 @@ app = webapp2.WSGIApplication([
     ('/add-dog', AddDogHandler),
     ('/view-dog/(.*)', ViewDogHandler),
     ('/img', Image),
+    ('/getMatches', GetMatchesHandler),
     ('.*', MainHandler)
     ])
