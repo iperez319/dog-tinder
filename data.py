@@ -58,10 +58,12 @@ def breed_match(breed1, breed2):
             return True
         return False
 def age_match(age1, age2):
-    diff = abs(int(age1) - int(age2))
+    ageDic = {"Puppy": 1, "Adolecsent": 2, "Adult": 3, "Senior": 4}
+    diff = abs(ageDic[age1] - ageDic[age2])
     return (diff + 1) * 5
 def active_match(active1, active2):
-    diff = abs(int(active1) - int(active2))
+    acDic = {"Not Active": 1, "A Little Active": 2, "Active": 3, "Very Active": 4}
+    diff = abs(acDic[active1] - acDic[active2])
     return (diff + 1) * 2.5
 def gender_match(gender1, gender2):
     if gender1 == gender2:
@@ -88,13 +90,13 @@ def populate_dogs():
     name = ["Fido", "Dashi", "Ian", "Jorge", "Martin", "Igor", "Alina", "Miraf", "Cedes", "Karly"]
     breed = ["German Shepherd", "French Bulldog", "Maltese", "Great Dane", "Shi Tzu", "Pug", "Greyhound"]
     gender = ["Male", "Female"]
-    age = ["1", "2", "3", "4"]
+    age = ["Puppy", "Adolecsent", "Adult", "Senior"]
     size = ["Toy", "Small", "Medium", "Large", "Extra Large"]
     socialLevel = ["Shy", "Social"]
-    activityLevel = ["1", "2", "3", "4"]
+    activityLevel = ["Not Active", "A Little Active", "Active", "Very Active"]
     ownerEmail = "testomondongo@example.com"
     dgs = []
-    for i in range(25):
+    for i in range(10):
         dog = Dog(name=choice(name), breed=choice(breed), gender=choice(gender), age=choice(age), size=choice(size), socialLevel=choice(socialLevel),activityLevel=choice(activityLevel), ownerEmail=ownerEmail)
         dgs.append(dog.put())
     up = UserProfile(name="Testo Mondongo", email=ownerEmail, dogs=dgs, city="San Juan", state="Puerto Rico")

@@ -166,6 +166,8 @@ class ViewDogHandler(webapp2.RequestHandler):
             for d in localDogs:
                 d.score = data.score_dog(dog ,d)
                 d.keyUrl = d.key.urlsafe()
+                d.profile = data.get_user_profile(d.ownerEmail)
+                d.profile.keyUrl = d.profile.key.urlsafe()
                 scoredDogs.append(d)
             scoredDogs.sort(key=lambda d: d.score, reverse=True)
             values["matchedDogs"] = scoredDogs
@@ -192,7 +194,7 @@ class Image(webapp2.RequestHandler):
                 self.response.out.write(user.profilePic)
             else:
                 self.response.out.write('No image')
-        
+
 
 app = webapp2.WSGIApplication([
     ('/profile-view', ProfileViewHandler),
