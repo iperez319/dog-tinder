@@ -1,5 +1,16 @@
 {% extends "_base.html" %}
 {%block content %}
+<script>
+    $(document).ready(function(){
+        $('input.autocomplete').autocomplete({
+        data: {
+            "Apple": null,
+            "Microsoft": null,
+            "Google": 'https://placehold.it/250x250'
+        },
+        });
+  });
+</script>
 <div class="container">
 <div>
     
@@ -10,10 +21,18 @@
                 <input type="text" name="name" class="validate" id="name">
                 <label for="name">Name</label>
             </div>
-            <div class="row input-field">
+            <!-- <div class="row input-field">
                 <input type="text" name="breed" class="validate" id="breed">
                 <label for="breed">Breed</label>
+            </div> -->
+        
+            <div class="row">
+                <div class="input-field col s12">
+                <input type="text" id="autocomplete-input" class="autocomplete" name="breed">
+                <label for="autocomplete-input">Breed</label>
+                </div>
             </div>
+            
             <div class="row">
                 <h5>Gender</h5>
                 <p>
