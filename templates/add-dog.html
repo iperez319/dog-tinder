@@ -4,9 +4,30 @@
     $(document).ready(function(){
         $('input.autocomplete').autocomplete({
         data: {
-            "Apple": null,
-            "Microsoft": null,
-            "Google": 'https://placehold.it/250x250'
+            "Siberian Husky": "/i/dogPic/siberian-husky.png",
+            "Pekingese": "/i/dogPic/pekingese.jpg",
+            "German Shepherd": "/i/dogPic/german-shepherd.jpg",
+            "Doberman": "/i/dogPic/doberman.jpg",
+            "Poodle": "/i/dogPic/poodle.jpg",
+            "Alaskan Malmute": "/i/dogPic/alaskan-malamute.jpg",
+            "Bulldog": "/i/dogPic/bulldog.jpeg",
+            "French Bulldog": "/i/dogPic/french-bulldog.jpg",
+            "Pug": "/i/dogPic/pug.jpg",
+            "Boxer": "/i/dogPic/boxer.jpg",
+            "Golden Retriever": "/i/dogPic/golden-retriever.jpg",
+            "Maltese": "/i/dogPic/maltese.jpg",
+            "Yorkshire Terrier": "/i/dogPic/yorkshire-terrier.webp",
+            "Shi Tzu": "/i/dogPic/shi-tzu.jpg",
+            "Great Dane": "/i/dogPic/great-dane.jpg",
+            "Sheltie": "/i/dogPic/sheltie.jpg",
+            "Border Collie": "/i/dogPic/border-collie.jpg",
+            "Rottweiler": "/i/dogPic/rottweiler.jpg",
+            "Labrador": "/i/dogPic/labrador.jpg",
+            "Greyhound": "/i/dogPic/greyhound.jpg",
+            "Pointer": "/i/dogPic/pointer.jpg",
+            "Dachshund": "/i/dogPic/dachshund.jpg",
+            "Malinois": "/i/dogPic/malinois.jpg",
+            "Mixed": null
         },
         });
   });
@@ -16,9 +37,9 @@
     
     <h1>Add Dog: Tell us more about your dog!</h1>
     <div class="row">
-    <form method="post" enctype="multipart/form-data">
+    <form autocomplete="off" method="post" enctype="multipart/form-data">
             <div class="row input-field">
-                <input type="text" name="name" class="validate" id="name">
+                <input autocomplete="false" type="text" name="name" class="validate" id="name">
                 <label for="name">Name</label>
             </div>
             <!-- <div class="row input-field">
@@ -28,7 +49,7 @@
         
             <div class="row">
                 <div class="input-field col s12">
-                <input type="text" id="autocomplete-input" class="autocomplete" name="breed">
+                <input type="text" id="autocomplete-input" class="autocomplete" name="breed" style="margin-left:-11px">
                 <label for="autocomplete-input">Breed</label>
                 </div>
             </div>

@@ -4,7 +4,14 @@
 	document.addEventListener('DOMContentLoaded', function() {       
         window.setTimeout(() => {
             var btn = document.getElementById("addDogBtn")
+            var card = document.getElementById('profileCard')
             btn.classList.add("scale-in")
+            card.classList.add("scale-in")
+            var dogProfiles = document.querySelectorAll(".dogClasses")
+            console.log(dogProfiles)
+            for(var i = 0; i < dogProfiles.length; i++){
+                dogProfiles[i].classList.add("scale-in")
+            }
         }, 500)
         
     });
@@ -18,7 +25,7 @@
 	</div>
     <div class="row">
 			<div class="col s6">
-				<div class="z-depth-4" style="margin-left:175px;margin-top:160px;width:auto;display:inline-block;padding:50px;border-radius:10px;">
+				<div class="z-depth-4 scale-transition scale-out" id="profileCard" style="margin-left:175px;margin-top:160px;width:auto;display:inline-block;padding:50px;border-radius:10px;">
 					<!-- box-shadow:0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) -->
                     <center>
 					<img class="z-depth-3" src="/img?img_id={{keyUrl}}&type=User" style="border-radius:50%;width:150px;">
@@ -37,7 +44,7 @@
 				{% for dog in dogs %}
 				<div class="row">
 					<div class="col s12 m7">
-						<div class="card z-depth-4" onclick="window.location.pathname = '/view-dog/{{dog.keyUrl}}'">
+						<div class="card z-depth-4  scale-transition scale-out dogClasses" onclick="window.location.pathname = '/view-dog/{{dog.keyUrl}}'">
 							<div class="card-image">
 								<img src="/img?img_id={{dog.keyUrl}}&type=Dog">
 								<span class="card-title" style="font-weight:400">{{dog.name}}</span>
