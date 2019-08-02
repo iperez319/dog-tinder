@@ -3,6 +3,7 @@
 <script type="text/javascript">
 var numberOfPages = parseInt({{amountOfDogs}})
 $(document).ready( function(){
+    if(numberOfPages == 1){
     $('#pag').materializePagination({
     align: 'center',
     lastPage:  numberOfPages,
@@ -13,6 +14,7 @@ $(document).ready( function(){
             window.location = window.location.pathname + "?page=" + requestedPage
         }
     });
+    }
 })
 
 
