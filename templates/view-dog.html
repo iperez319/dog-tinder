@@ -3,7 +3,7 @@
 <script type="text/javascript">
 var numberOfPages = parseInt({{amountOfDogs}})
 $(document).ready( function(){
-    if(numberOfPages == 1){
+    if(numberOfPages != 1){
     $('#pag').materializePagination({
     align: 'center',
     lastPage:  numberOfPages,
@@ -15,6 +15,13 @@ $(document).ready( function(){
         }
     });
     }
+    window.setTimeout(() => {
+            var dogProfiles = document.querySelectorAll(".flip-container")
+            console.log(dogProfiles)
+            for(var i = 0; i < dogProfiles.length; i++){
+                dogProfiles[i].classList.add("scale-in")
+            }
+        }, 500)
 })
 
 
@@ -41,7 +48,7 @@ $(document).ready( function(){
       <div class="row">
          {% for dog in matchedDogs %}
          <div class="col s12 m4" style="margin-bottom:50px">
-            <div class="flip-container" onclick="this.classList.toggle('hover');">
+            <div class="flip-container scale-transition scale-out" onclick="this.classList.toggle('hover');">
                <div class="flipper">
                   <div class="front">
                      <div class="card medium z-depth-3">

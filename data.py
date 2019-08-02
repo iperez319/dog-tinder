@@ -57,7 +57,7 @@ def breed_match(breed1, breed2):
             return True
         return False
 def age_match(age1, age2):
-    ageDic = {"Puppy": 1, "Adolecsent": 2, "Adult": 3, "Senior": 4}
+    ageDic = {"Puppy": 1, "Adolescent": 2, "Adult": 3, "Senior": 4}
     diff = abs(ageDic[age1] - ageDic[age2])
     return (diff + 1) * 5
 def active_match(active1, active2):
